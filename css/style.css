@@ -1,0 +1,11 @@
+body {
+    color:darkgray;
+    text-align: center;
+    font-family: "Courier New", Courier, monospace;
+    letter-spacing: 0.15em;}
+#page {
+    max-width: 940px;
+    min-width: 720px;
+    margin: 30px auto 30px auto;
+    padding: 20px;
+    border: 1px solid #000;}
