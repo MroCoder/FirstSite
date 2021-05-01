@@ -5,39 +5,25 @@ const urlParams = new URLSearchParams(queryString);
 
 const sPat = urlParams.get('PAT');
 const iSrv = urlParams.get('srv');
-const iId = urlParams.get('id');
+//const iId = urlParams.get('id');
 
 var buttonOn = document.getElementById("HueOn")
 var buttonOff = document.getElementById("HueOff")
 
-buttonOn.addEventListener('click', XHueOn);
-buttonOff.addEventListener('click', XHueOff);
+buttonOn.addEventListener("click", function(){XHue('12', true);}, false);
+buttonOff.addEventListener("click", function(){XHue('12', false);}, false);
 
-function XHueOn() {
+function XHue(iLight, state) {
 
     const Http = new XMLHttpRequest();
-    const Hueurl = 'http://' + iSrv.substring(0,3) + '.' + iSrv.substring(3,6) + '.' + iSrv.substring(6,7) + '.' + iSrv.substring(7,8)  + '/api/' + sPat + '/lights/' + iId + '/state'
+    const Hueurl = 'http://' + iSrv.substring(0,3) + '.' + iSrv.substring(3,6) + '.' + iSrv.substring(6,7) + '.' + iSrv.substring(7,8)  + '/api/' + sPat + '/lights/' + iLight + '/state'
 
     Http.open("PUT", Hueurl);
     Http.setRequestHeader("Content-Type", "application/json");
 
-    var dataOn = JSON.stringify({"on":true});
+    var dataOn = JSON.stringify({"on":state});
 
     Http.send(dataOn);
-
-}
-
-function XHueOff() {
-
-    const Http = new XMLHttpRequest();
-    const Hueurl = 'http://' + iSrv.substring(0,3) + '.' + iSrv.substring(3,6) + '.' + iSrv.substring(6,7) + '.' + iSrv.substring(7,8) + '/api/' + sPat + '/lights/' + iId + '/state'
-
-    Http.open("PUT", Hueurl);
-    Http.setRequestHeader("Content-Type", "application/json");
-
-    var dataOff = JSON.stringify({"on":false});
-
-    Http.send(dataOff);
 
 }
 
@@ -51,4 +37,4 @@ function XHueOff() {
 //     element.innerText = Http.responseText
 // }
 
-element.innerText = sPat + ' - ' + iSrv + ' - ' + iId + ' - ' + iSrv.substring(0,3) + '.' + iSrv.substring(3,6) + '.' + iSrv.substring(6,7) + '.' + iSrv.substring(7,8)
+element.innerText = sPat + ' - ' + iSrv + ' - ' + iSrv.substring(0,3) + '.' + iSrv.substring(3,6) + '.' + iSrv.substring(6,7) + '.' + iSrv.substring(7,8)

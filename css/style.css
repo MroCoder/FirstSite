@@ -4,7 +4,7 @@ body {
     font-family: "Courier New", Courier, monospace;
     letter-spacing: 0.15em;}
 #page {
-    max-width: 940px;
+    max-width: 840px;
     min-width: 720px;
     margin: 30px auto 30px auto;
     padding: 20px;
